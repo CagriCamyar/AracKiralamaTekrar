@@ -1,11 +1,17 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,10 +26,12 @@ namespace Business.Concrete
             _carDal = carDal;        
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+           ValidationTool.Validate(new CarValidator(), car);
             _carDal.Add(car);
-            return new SuccessResult("Kiralama Basarili");
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult DailyPriceMoreThanZero(Car car)
@@ -31,30 +39,30 @@ namespace Business.Concrete
             if (car.DailyPrice <= 0)
             {
                 _carDal.Add(car);
-                return new ErrorResult("Aracin Fiyati 0 dan buyuk olmalidir");
+                return new ErrorResult(Messages.DailyPriceError);
             }
-            return new SuccessResult("Arac Eklendi");
+            return new SuccessResult(Messages.CarAdded);
 
         }
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), "Araclar Listelendi");
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), "Arac Detaylari Listelendi");
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListedWithDetails);
         }
 
         public IDataResult<Car> GetCarByBrandId(int brandId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.BrandId == brandId),"Sectiginiz Markadanin Araclari :" );
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.BrandId == brandId),Messages.GetCarByBrandId);
         }
 
         public IDataResult<Car> GetCarByColorId(int colorId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.ColorId == colorId), "Sectiginiz Rengin Araclari : ");
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.ColorId == colorId), Messages.GetCarByColorId);
                 
         }
 
@@ -63,9 +71,9 @@ namespace Business.Concrete
             if (car.Description.Length <= 2)
             {
                 _carDal.Add(car);
-            return new ErrorResult("Arac Ismi Minimum 3 Karakterden Olusmalidir");
+            return new ErrorResult(Messages.CharError);
             }
-            return new SuccessResult("Arac Eklendi");
+            return new SuccessResult(Messages.CarAdded);
 
         }
 
@@ -74,20 +82,20 @@ namespace Business.Concrete
             var result = _carDal.GetAll(c=> c.BrandId==car.BrandId).Count;
             if (result >= 10) 
             {
-                return new ErrorResult("Guncelleme Basarisiz");
+                return new ErrorResult(Messages.CarUpdateError);
             }
-            return new SuccessResult("Arac Bilgileri Guncellendi");
+            return new SuccessResult(Messages.CarUpdated);
                 }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult("Arac Silindi");
+            return new SuccessResult(Messages.CarDeleted);
         }
 
         public IDataResult<Car> Get(int carId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c=>c.CarId==carId), "Sectiginiz Arac : ");
+            return new SuccessDataResult<Car>(_carDal.Get(c=>c.CarId==carId), Messages.GetCarId);
         }
     }
 }

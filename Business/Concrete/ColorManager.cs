@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -22,29 +23,30 @@ namespace Business.Concrete
         public IResult Add(Color color)
         {       
             _colorDal.Add(color);
-            return new SuccessResult("Yeni Renk Eklendi");
+            return new SuccessResult(Messages.ColorAdded);
         }
 
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
-            return new SuccessResult("Renk Silindi");
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
         public IDataResult<Color> Get(int colorId)
         {
-            return new SuccessDataResult<Color>(_colorDal.Get(cl=> cl.ColorId == colorId), "Sectiginiz Renk : ");
+            return new SuccessDataResult<Color>(_colorDal.Get(cl=> cl.ColorId == colorId), Messages.GetColor);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>("Renkler Listelendi");
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsListed);
+
         }
 
         public IResult Update(Color color)
         {
             _colorDal.Update(color);
-            return new SuccessResult("Renk Bilgisi Guncellendi");
+            return new SuccessResult(Messages.ColorUpdated);
         }
     }
 }

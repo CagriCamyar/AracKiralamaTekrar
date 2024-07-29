@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -23,34 +24,34 @@ namespace Business.Concrete
         public IResult Add(User user)
         {
             _userDal.Add(user);
-            return new SuccessResult("Kullanici Eklendi");
+            return new SuccessResult(Messages.UserAdded);
         }
 
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
-            return new SuccessResult("Kullanici Silindi");
+            return new SuccessResult(Messages.UserDeleted);
         }
 
         public IDataResult<User> Get(int userId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId), "Secilen Kullanici");
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId), Messages.GetUser);
         }
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>("Kullanicilar Listelendi");
+            return new SuccessDataResult<List<User>>(Messages.UsersListed);
         }
 
         public IDataResult<List<UserDetailDto>> GetUserDetails()
         {
-            return new SuccessDataResult<List<UserDetailDto>>("Kullanici Detaylari Listelendi");
+            return new SuccessDataResult<List<UserDetailDto>>(Messages.UsersListedWithDetails);
         }
 
         public IResult Update(User user)
         {
             _userDal.Update(user);
-            return new SuccessResult("Kullanici Guncellendi");
+            return new SuccessResult(Messages.UserUpdated);
         }
     }
 }
