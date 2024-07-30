@@ -54,5 +54,15 @@ namespace Business.Constants
         public static string UsersListed = "Kullanicilar Listelendi";
         public static string GetUser = "Sectiginiz Kullanici : ";
         public static string UsersListedWithDetails = "Kullanicilarin Detaylari Listelendi";
+
+        public static string CarImageAdded = "Resim Ekleme Basarili";
+        public static string CarImageDeleted = "Resim Basariyla Silindi";
+        public static string CarImagesListed = "Resimler Listelendi";
+        public static string CarImagesListedByCarId = "Aracin Resimleri Listelendi";
+        public static string CarImageFound = "Baktiginiz Resim : ";
+        public static string CarImagesListedWithDetails = "Resim Detaylari : ";
+        public static string CarImageUpdated = "Resmin Bilgileri Guncellendi";
+        public static string CarImagesOverLimit = "Ayni Arac Icin 5ten Fazla Resim Eklenemez";
+
     }
 }
