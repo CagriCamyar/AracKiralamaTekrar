@@ -10,12 +10,13 @@ namespace Business.Constants
     {
         public static string BrandsListed = "Markalar Listelendi";
         public static string GetBrand = "Sectiginiz Marka";
-        public static string BrandAdded = "Marka Eklendi"; 
+        public static string BrandAdded = "Marka Eklendi";
         public static string BrandUpdated = "Marka Bilgisi Guncellendi";
         public static string BrandDeleted = "Marka Silindi";
 
         public static string DailyPriceError = "Aracin Fiyati 0 dan buyuk olmalidir";
-        public static string CarAdded = "Arac Eklendi"; 
+        public static string CarAdded = "Arac Eklendi";
+        public static string CarAddedError = "Arac Ekleme Basarisiz";
         public static string CarsListed = "Araclar Listelendi";
         public static string CarsListedWithDetails = "Araclarin Detaylari Listelendi";
         public static string GetCarByBrandId = "Sectiginiz Markadaki Araclar : ";
@@ -25,6 +26,9 @@ namespace Business.Constants
         public static string CarUpdated = "Arac Bilgileri Guncellendi";
         public static string CarDeleted = "Arac Veritabanindan Silindi";
         public static string GetCarId = "Sectiginiz  Arac : ";
+        public static string CarCountOfBrandError = "Bir Markadan 10 Arac Olabilir";
+        public static string CarDescriptionAlreadyExist = "Bu Tanimda Bir Arac Zaten Var";
+        public static string BrandLimitExceded = "Marka Limiti Asildigi Icin Yeni Arac Eklenemiyor";
 
         public static string ColorAdded = "Renk Eklendi";
         public static string ColorDeleted = "Renk Silindi";

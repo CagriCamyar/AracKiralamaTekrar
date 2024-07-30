@@ -3,6 +3,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,18 +21,27 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        IBrandService _brandService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, IBrandService brandService)
         {
-            _carDal = carDal;        
+            _carDal = carDal;
+            _brandService = brandService;
         }
 
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-           ValidationTool.Validate(new CarValidator(), car);
+            IResult result = BusinessRules.Run(CheckIfCarCountOfBrandCorrect(car.BrandId),
+                CheckIfCarFullNameExist(car.Description), CheckIfBrandLimitExceded());
+
+            if (result != null)
+            {
+                return result;
+            }
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
+
         }
 
         public IResult DailyPriceMoreThanZero(Car car)
@@ -57,13 +67,13 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetCarByBrandId(int brandId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.BrandId == brandId),Messages.GetCarByBrandId);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.BrandId == brandId), Messages.GetCarByBrandId);
         }
 
         public IDataResult<Car> GetCarByColorId(int colorId)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.ColorId == colorId), Messages.GetCarByColorId);
-                
+
         }
 
         public IResult NameMinTwoChars(Car car)
@@ -71,7 +81,7 @@ namespace Business.Concrete
             if (car.Description.Length <= 2)
             {
                 _carDal.Add(car);
-            return new ErrorResult(Messages.CharError);
+                return new ErrorResult(Messages.CharError);
             }
             return new SuccessResult(Messages.CarAdded);
 
@@ -79,13 +89,13 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            var result = _carDal.GetAll(c=> c.BrandId==car.BrandId).Count;
-            if (result >= 10) 
+            var result = _carDal.GetAll(c => c.BrandId == car.BrandId).Count;
+            if (result >= 10)
             {
                 return new ErrorResult(Messages.CarUpdateError);
             }
             return new SuccessResult(Messages.CarUpdated);
-                }
+        }
 
         public IResult Delete(Car car)
         {
@@ -95,7 +105,38 @@ namespace Business.Concrete
 
         public IDataResult<Car> Get(int carId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c=>c.CarId==carId), Messages.GetCarId);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId), Messages.GetCarId);
+        }
+
+        private IResult CheckIfCarCountOfBrandCorrect(int brandId)
+        {
+            var result = _carDal.GetAll(c => c.BrandId == brandId).Count;
+            if (result >= 10)
+            {
+                return new ErrorResult(Messages.CarCountOfBrandError);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCarFullNameExist(string description)
+        {
+            var result = _carDal.GetAll(c => c.Description == description).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.CarDescriptionAlreadyExist);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfBrandLimitExceded()
+        {
+            var result = _brandService.GetAll();
+            if (result.Data.Count > 20)
+            {
+                return new ErrorResult(Messages.BrandLimitExceded);
+            }
+            return new SuccessResult();
+
         }
     }
 }
