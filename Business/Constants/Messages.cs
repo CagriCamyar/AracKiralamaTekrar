@@ -48,7 +48,7 @@ namespace Business.Constants
         public static string RentalsListed = "Kiralamalar Listelendi";
         public static string GetRental = "Sectiginiz Kiralama : ";
 
-        public static string UserAdded = "Kullanici Eklendi";
+        public static string UserAdded = "Yeni Kullanici Eklendi";
         public static string UserDeleted = "Kullanici Silindi";
         public static string UserUpdated = "Kullanici Bilgisi Guncellendi";
         public static string UsersListed = "Kullanicilar Listelendi";
@@ -64,5 +64,15 @@ namespace Business.Constants
         public static string CarImageUpdated = "Resmin Bilgileri Guncellendi";
         public static string CarImagesOverLimit = "Ayni Arac Icin 5ten Fazla Resim Eklenemez";
 
+        public static string AuthorizationDenied = "Bu Islem Icin Yetkiniz Yok";
+        public static string ClaimsListed = "Kullaniciya Ait Claimler Listelendi";
+        public static string GetUserByMail = "Bu Maile Sahip Kullanici : ";
+
+        public static string UserRegistered = "Kayit Basarili";
+        public static string UserNotFound = "Kullanici Bulunamadi";
+        public static string PasswordError = "Hatali Parola";
+        public static string UserAlreadyExists = "Kullanici Mevcut";
+        public static string SuccessfulLogin = "Basarili Giris";
+        public static string AccessTokenCreated = "Token Olusturuldu";
     }
 }
