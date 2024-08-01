@@ -21,5 +21,6 @@ namespace Business.Abstract
         IResult NameMinTwoChars (Car car);
         IResult DailyPriceMoreThanZero (Car car);
         IDataResult<List<CarDetailDto>> GetCarDetails();
+        IResult AddTansactionalTest(Car car);
     }
 }
