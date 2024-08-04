@@ -64,7 +64,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.UserAlreadyExists);
             }
-                return new SuccessResult();
+                return new SuccessResult(Messages.UserAdded);
         }
 
         public IDataResult<AccessToken> CreateAccessToken(User user)

@@ -33,10 +33,10 @@ namespace Business.Concrete
             _carDal = carDal;
             _brandService = brandService;
         }
-
-        [SecuredOperation("car.add, admin")]
+ 
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
-        [CacheRemoveAspect("IProductService.Get")]
+        //[CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Car car)
         {
             IResult result = BusinessRules.Run(CheckIfCarCountOfBrandCorrect(car.BrandId),
