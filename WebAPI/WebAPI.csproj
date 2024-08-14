@@ -17,4 +17,26 @@
     <ProjectReference Include="..\Business\Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Uploads\Images\03718ea4-3012-49cf-bdd5-6b56d3450356.jpg" />
+    <None Include="wwwroot\Uploads\Images\0b7634a8-cd47-4fac-b5da-0974c5165fc9.jpg" />
+    <None Include="wwwroot\Uploads\Images\0c73b349-3498-40e4-9224-68387bbb9926.png" />
+    <None Include="wwwroot\Uploads\Images\13e0348f-68de-433b-9592-79b236b91822.jpeg" />
+    <None Include="wwwroot\Uploads\Images\214c7d60-29b0-4806-b532-df1ba68c1b70.jpg" />
+    <None Include="wwwroot\Uploads\Images\385eb913-5917-471d-9128-6b52068edcb8.jpg" />
+    <None Include="wwwroot\Uploads\Images\527180e0-c0be-4c9f-aa5b-c838099ca7a7.png" />
+    <None Include="wwwroot\Uploads\Images\626f70e7-4bd2-4150-973d-d0945493ff4f.jpg" />
+    <None Include="wwwroot\Uploads\Images\6bfad2cc-44df-456f-a87e-2f1b2acb2f04.jpg" />
+    <None Include="wwwroot\Uploads\Images\a7e8c6dc-fff7-42f9-9c88-04b5551faa75.jpg" />
+    <None Include="wwwroot\Uploads\Images\aab802db-3123-460d-b59e-d68e393604c1.png" />
+    <None Include="wwwroot\Uploads\Images\affa62c7-f77a-4dcc-88ea-d36f73ea89bd.jpg" />
+    <None Include="wwwroot\Uploads\Images\b89235dc-e359-42d8-82ff-96cc4a424cf6.jpg" />
+    <None Include="wwwroot\Uploads\Images\beb6aebe-c906-476b-94b4-0cf23d6364af.jpg" />
+    <None Include="wwwroot\Uploads\Images\c64bf769-8b83-49bc-ab27-dab98324634d.jpg" />
+    <None Include="wwwroot\Uploads\Images\dd5ebc4f-da99-4ca0-96c1-d438b59f3acd.jpg" />
+    <None Include="wwwroot\Uploads\Images\de7129ec-2b08-4014-a6c6-ea60316aa38d.jpeg" />
+    <None Include="wwwroot\Uploads\Images\de9a6132-07f4-411f-aae0-a727a3c5185a.jpg" />
+    <None Include="wwwroot\Uploads\Images\e41e7a19-23b7-4cf3-9753-5fb6642371bc.jpg" />
+  </ItemGroup>
+
 </Project>

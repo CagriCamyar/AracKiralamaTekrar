@@ -3,11 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entities.Dtos;
 
 namespace Business.Concrete
 {
@@ -23,7 +19,7 @@ namespace Business.Concrete
         public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
-            return new SuccessResult(Messages.RentalAdded);              
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Delete(Rental rental)
@@ -34,12 +30,17 @@ namespace Business.Concrete
 
         public IDataResult<Rental> Get(int rentalId)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r=> r.RentalId == rentalId),Messages.GetRental);
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == rentalId), Messages.GetRental);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalsListed); 
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalsListed);
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetAllRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetAllRentalDetails(), Messages.RentalDetaislListed);
         }
 
         public IResult Update(Rental rental)

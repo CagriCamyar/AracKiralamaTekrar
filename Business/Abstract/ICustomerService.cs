@@ -16,7 +16,7 @@ namespace Business.Abstract
         IDataResult<Customer> Get(int customerId);
         IResult Delete(Customer customer);
         IResult Update(Customer customer);
-
+        IDataResult<List<CustomerDetailDto>> GetAllCustomerDetails();
 
     }
 }

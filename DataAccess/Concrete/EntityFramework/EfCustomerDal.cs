@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCustomerDal : EfEntityRepositoryBase<Customer, ReCapProjectContext>, ICustomerDal
     {
-        public List<CustomerDetailDto> GetCustomerDetails()
+        public List<CustomerDetailDto> GetAllCustomerDetails()
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {

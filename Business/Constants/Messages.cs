@@ -78,6 +78,6 @@ namespace Business.Constants
         public static string CarDetailsListed = "Detaylar Listelendi";
         public static string RentalDetaislListed = "Kiralama Detaylari Listelendi";
         public static string CustomerDetailListed = "Musteri Detaylari Listelendi";
-
+        public static string CarsListedWhichBrand = "Sectiginiz Markadaki Araclar ";
     }
 }

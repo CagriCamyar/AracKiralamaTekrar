@@ -13,48 +13,33 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCapProjectContext>,  IRentalDal
     {
-       
-        public List<RentalDetailDtoView> GetRentalDetailView()
+
+        public List<RentalDetailDto> GetAllRentalDetails()
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                var result = from c in context.Cars
-                             join r in context.Rentals
-                             on c.CarId equals r.CarId
+                var result = from r in context.Rentals
+                             join c in context.Cars
+                             on r.CarId equals c.CarId
                              join b in context.Brands
                              on c.BrandId equals b.BrandId
                              join cu in context.Customers
                              on r.CustomerId equals cu.CustomerId
-                             select new RentalDetailDtoView
-                             {
-                                 RentalId = r.RentalId,
-                                 BrandName = b.BrandName,
-                                 CompanyName = cu.CompanyName,
-                                 RentDate = r.RentDate,
-                                 ReturnDate = r.ReturnDate,
-                             };
-                             return result.ToList();
-
-            }
-        }
-
-        public List<RentalDetailDto> GetRentalsDetail()
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var result = from c in context.Cars
-                             join r in context.Rentals
-                             on c.CarId equals r.CarId
-                             join cu in context.Customers
-                             on r.CustomerId equals cu.CustomerId
-                             select new RentalDetailDto 
+                             join u in context.Users
+                             on cu.UserId equals u.UserId
+                             join cl in context.Colors
+                             on c.ColorId equals cl.ColorId
+                             select new RentalDetailDto
                              {
                                  RentalId = r.RentalId,
                                  CarId = c.CarId,
                                  CustomerId = cu.CustomerId,
+                                 BrandName = b.BrandName,
+                                 FirstName = u.FirstName,
+                                 LastName = u.LastName,
+                                 CompanyName = cu.CompanyName,
                                  RentDate = r.RentDate,
-                                 ReturnDate = (DateTime)r.ReturnDate,
-                             };
+                              };
                 return result.ToList();
             }
         }
