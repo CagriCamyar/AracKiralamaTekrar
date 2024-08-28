@@ -176,6 +176,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetailsByColorId(cl => cl.ColorId == colorId), Messages.CarDetailsListed);
         }
 
-      
+        public IDataResult<List<CarDetailDto>> GetCarBrandAndColorId(int brandId, int colorId)
+        {
+            var result = _carDal.GetCarByBrandAndColorId(brandId, colorId);
+
+            if (result == null || result.Count == 0)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.CarNotFoundCriteria);
+            }
+
+            return new SuccessDataResult<List<CarDetailDto>>(result, Messages.CarsListedByBrandAndColor);
+        }
     }
 }

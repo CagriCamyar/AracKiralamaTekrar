@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
+        [HttpGet("getbycolorid")]
         public IActionResult Get(int colorId)
         {
             var result = _colorService.Get(colorId);

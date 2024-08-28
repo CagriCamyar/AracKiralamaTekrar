@@ -27,8 +27,10 @@ namespace Business.Constants
         public static string CarDeleted = "Arac Veritabanindan Silindi";
         public static string GetCarId = "Sectiginiz  Arac : ";
         public static string CarCountOfBrandError = "Bir Markadan 10 Arac Olabilir";
-        public static string CarDescriptionAlreadyExist = "Bu Tanimda Bir Arac Zaten Var";
+        public static string CarDescriptionAlreadyExist = "Bu Tanimda Bir Arac Zaten Var";    
         public static string BrandLimitExceded = "Marka Limiti Asildigi Icin Yeni Arac Eklenemiyor";
+        public static string CarsListedByBrandAndColor = "Ayni Marka ve Ayni Renkteki Araclar Listelendi";
+        public static string CarNotFoundCriteria = "Aradiginiz Ozellikte Arac Bulunamadi";
 
         public static string ColorAdded = "Renk Eklendi";
         public static string ColorDeleted = "Renk Silindi";
@@ -47,6 +49,12 @@ namespace Business.Constants
         public static string RentalUpdated = "Kiralama Bilgisi Guncellendi";
         public static string RentalsListed = "Kiralamalar Listelendi";
         public static string GetRental = "Sectiginiz Kiralama : ";
+        public static string RentalRejected = " Malesef Bu Araci Kiralayamazsiniz, Araç Müsait Değil, Kiralanmış Durumda";
+        public static string RentalApplied = " Araç müsait, kiralanabilir durumda, Iyi Yolculuklar Dikkatli Olunuz.";
+        public static string ReturnDateError = "Kiralamayi Bitirmek Istediginiz Tarih Kiralayacaginiz Tarihten Eski Olamaz";
+        public static string RentalDateCanNotBeforeToday = "Kiralama Yapacaginiz Tarih Bugunun Tarihinden Once Olamaz";
+        public static string ReturnDateCanNotBeforeRentDate = "Geri Donus Tarihiniz Kiralama Tarihinden Once Olamaz";
+        public static string CarReturned = "Arac Dondu"; 
 
         public static string UserAdded = "Yeni Kullanici Eklendi";
         public static string UserDeleted = "Kullanici Silindi";
@@ -79,5 +87,6 @@ namespace Business.Constants
         public static string RentalDetaislListed = "Kiralama Detaylari Listelendi";
         public static string CustomerDetailListed = "Musteri Detaylari Listelendi";
         public static string CarsListedWhichBrand = "Sectiginiz Markadaki Araclar ";
+
     }
 }

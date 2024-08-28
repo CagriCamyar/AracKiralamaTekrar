@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,18 +49,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("addrental")]
-        public IActionResult Add(Rental rental) 
+        [HttpPost("rulesforadd")]
+        public IActionResult RulesForAdd(Rental rental)
         {
-            var result= _rentalService.Add(rental);
+            var result = _rentalService.RulesForAdd(rental);
+
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-
-
-
     }
 }
